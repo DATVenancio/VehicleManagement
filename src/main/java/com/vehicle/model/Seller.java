@@ -9,24 +9,24 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity
-public class Utilisateur {
+public class Seller {
 	
 	@Id
-	private String matricule;
+	private String credential;
 	private String nom;
 	
 	@ManyToMany
-	@JoinTable(name="projet_utilisateurs",joinColumns = @JoinColumn(name = "matricule"),inverseJoinColumns = @JoinColumn(name = "id"))
+	@JoinTable(name="projet_utilisateurs",joinColumns = @JoinColumn(name = "credential"),inverseJoinColumns = @JoinColumn(name = "id"))
 	private List<Vehicle> projets;
 	
-	public Utilisateur() {
+	public Seller() {
 		super();
 	}
 	
 	
-	public Utilisateur(String matricule, String nom) {
+	public Seller(String credential, String nom) {
 		super();
-		this.matricule = matricule;
+		this.credential = credential;
 		this.nom = nom;
 	}
 	
@@ -43,11 +43,11 @@ public class Utilisateur {
 	}
 
 
-	public String getMatricule() {
-		return matricule;
+	public String getCredential() {
+		return credential;
 	}
-	public void setMatricule(String matricule) {
-		this.matricule = matricule;
+	public void setCredential(String matricule) {
+		this.credential = matricule;
 	}
 	public String getNom() {
 		return nom;
@@ -59,7 +59,7 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [matricule=" + matricule + ", nom=" + nom + "]";
+		return "Utilisateur [matricule=" + credential + ", nom=" + nom + "]";
 	}
 	
 	

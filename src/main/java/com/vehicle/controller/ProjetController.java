@@ -1,10 +1,6 @@
 package com.vehicle.controller;
 
-import com.vehicle.model.Vehicle;
-import com.vehicle.model.Car;
-import com.vehicle.model.Utilisateur;
 import com.vehicle.repository.ProjetRepository;
-import com.vehicle.repository.TacheRepository;
 import com.vehicle.repository.UtilisateurRepository;
 import com.vehicle.service.ProjetService;
 
@@ -14,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Optional;
 
 @Controller
 public class ProjetController {
