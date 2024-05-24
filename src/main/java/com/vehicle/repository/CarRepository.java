@@ -5,12 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.vehicle.model.Car;
 import com.vehicle.model.Vehicle;
 
 import java.util.List;
 
 @Repository
-public interface ProjetRepository extends JpaRepository<Vehicle, Integer> {
+public interface CarRepository extends JpaRepository<Car, Integer> {
 	/*
     List<Vehicle> findByDescription(String d);
 
@@ -25,4 +26,5 @@ public interface ProjetRepository extends JpaRepository<Vehicle, Integer> {
     @Query("select p from ProjetDev p")
     public List<Object[]> getTousProjetDev();
     */
+    
 }

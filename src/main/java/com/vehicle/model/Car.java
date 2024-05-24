@@ -10,8 +10,19 @@ public class Car extends Vehicle {
     private String fuelType;
     private float trunkCapacity;
 
+    
+    
 
-    public int getAmountDoor() {
+    public Car(String brand, String model, String year, String color,int amountDoor, String fuelType, float trunkCapacity) {
+		super(brand, model, year, color);
+		
+		this.amountDoor=amountDoor;
+		this.fuelType = fuelType;
+		this.trunkCapacity = trunkCapacity;
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getAmountDoor() {
         return amountDoor;
     }
 

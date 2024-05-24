@@ -10,6 +10,7 @@ import com.vehicle.repository.ProjetRepository;
 
 @Service
 public class ProjetService {
+	/*
 	@Autowired ProjetRepository projetRepository;
 	public void addOrUpdateProjet(Vehicle projet) {
 		projetRepository.save(projet);
@@ -17,4 +18,5 @@ public class ProjetService {
 	public Optional<Vehicle> getProjetById(int id) {
 		return projetRepository.findById(id);
 	}
+	*/
 }

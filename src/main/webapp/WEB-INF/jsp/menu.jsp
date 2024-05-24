@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Description: ${description}
-Budget: ${budget}
+Description: deu certo
 </body>
 </html>

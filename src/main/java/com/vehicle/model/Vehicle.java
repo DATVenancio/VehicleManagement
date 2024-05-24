@@ -24,8 +24,7 @@ public class Vehicle {
     private String year;
     private String color;
 
-    @OneToMany(mappedBy = "projet")
-    private List<Tache> taches;
+
 
     @ManyToMany
     @JoinTable(name = "seller_vehicle", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "credential"))
@@ -36,9 +35,8 @@ public class Vehicle {
     }
 
 
-    public Vehicle(int id, String brand, String model, String year, String color) {
+    public Vehicle(String brand, String model, String year, String color) {
         super();
-        this.id = id;
         this.brand = brand;
         this.model = model;
         this.year = year;

@@ -1,7 +1,9 @@
 package com.vehicle.controller;
 
+import com.vehicle.model.Car;
 import com.vehicle.repository.ProjetRepository;
 import com.vehicle.repository.UtilisateurRepository;
+import com.vehicle.service.CarService;
 import com.vehicle.service.ProjetService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,19 +11,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ProjetController {
+public class CarController {
 	// appel ProjetService
-	@Autowired ProjetService projetService;
+	@Autowired CarService carService;
 	@Autowired ProjetRepository projetRepository;
 	@Autowired UtilisateurRepository utilisateurRepository;
 	
 
 	
 	// méthode pour afficher le formulaire projet.jsp
-	@GetMapping("/projets")
+	@GetMapping("/car")
 	public String getProjetForm(){
 		/*
 		System.out.println(projetRepository.findByDescription("Terceiro"));
@@ -50,30 +53,28 @@ public class ProjetController {
 		projetRepository.save(p);
 		
 		*/
-		return "Vehicule";
+		return "car";
 	}
 	//méthode pour récupérer les data du form projet
-	@PostMapping("/projets")
-	public ModelAndView gererProjet(@RequestParam String description, @RequestParam String budget){
+	@PostMapping("/car")
+	public String gererProjet(@RequestParam String brand, @RequestParam String model,@RequestParam String year,
+			@RequestParam String color,@RequestParam String amountDoor,@RequestParam String fuelType,
+			@RequestParam String trunkCapacity){
+
+		
+		Car car = new Car(brand,model,year,color, Integer.valueOf(amountDoor),fuelType, Float.parseFloat(trunkCapacity));
+		carService.addOrUpdateProjet(car);
+		
 		/*
-		ModelAndView model = new ModelAndView();
-		//Affichage des données
-		System.out.println(description+" avec un budget de " + budget);
-		//Traitement des données
-		Vehicle p = new Vehicle(description, Double.parseDouble(budget));
-		projetService.addOrUpdateProjet(p);
-		//changer le budget
 		p.setBudget(40000);
 		projetService.addOrUpdateProjet(p);
 		//Recherche du projet id = 2
 		Optional<Vehicle> pr = projetService.getProjetById(2);
         pr.ifPresent(System.out::println);
-		//Retour du mudel vers page menu.jsp
-		model.addObject("description", description);
-		model.addObject("budget", budget);
-		model.setViewName("menu");
-		return model;
-		*/
+        */
+		
+		return "menu";
+
 		
 	}
 }
