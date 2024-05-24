@@ -1,17 +1,12 @@
 package com.vehicle.model;
 
 import java.util.List;
+import java.util.Set;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.persistence.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -23,12 +18,8 @@ public class Vehicle {
     private String model;
     private String year;
     private String color;
-
-
-
-    @ManyToMany
-    @JoinTable(name = "seller_vehicle", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "credential"))
-    private List<Seller> sellers;
+    @OneToMany(mappedBy = "vehicle")
+    private Set<Sale> sales;
 
     public Vehicle() {
         super();
@@ -89,5 +80,8 @@ public class Vehicle {
         return "Vehicle [id=" + id + ", brand=" + brand + ", model=" + model + ", year=" + year + ", color=" + color + "]";
     }
 
-
+    public String toJson() throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(this);
+    }
 }

@@ -8,12 +8,9 @@ public class Car extends Vehicle {
 
     private int amountDoor;
     private String fuelType;
-    private float trunkCapacity;
+    private double trunkCapacity;
 
-    
-    
-
-    public Car(String brand, String model, String year, String color,int amountDoor, String fuelType, float trunkCapacity) {
+    public Car(String brand, String model, String year, String color, int amountDoor, String fuelType, double trunkCapacity) {
 		super(brand, model, year, color);
 		
 		this.amountDoor=amountDoor;
@@ -22,7 +19,11 @@ public class Car extends Vehicle {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getAmountDoor() {
+    public Car() {
+        super();
+    }
+
+    public int getAmountDoor() {
         return amountDoor;
     }
 
@@ -38,17 +39,17 @@ public class Car extends Vehicle {
         this.fuelType = fuelType;
     }
 
-    public float getTrunkCapacity() {
+    public double getTrunkCapacity() {
         return trunkCapacity;
     }
 
-    public void setTrunkCapacity(float trunkCapacity) {
+    public void setTrunkCapacity(double trunkCapacity) {
         this.trunkCapacity = trunkCapacity;
     }
 
     @Override
     public String toString() {
-        return "Car [amountDoor=" + amountDoor + ", fuelType=" + fuelType + ", trunkCapacity=" + trunkCapacity + "]";
+        return super.toString() + "Car [amountDoor=" + amountDoor + ", fuelType=" + fuelType + ", trunkCapacity=" + trunkCapacity + "]";
     }
 
 

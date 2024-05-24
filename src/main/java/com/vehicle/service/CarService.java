@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vehicle.model.Car;
-import com.vehicle.model.Vehicle;
 import com.vehicle.repository.CarRepository;
-import com.vehicle.repository.ProjetRepository;
 
 @Service
 public class CarService {
