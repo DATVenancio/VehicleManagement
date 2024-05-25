@@ -7,6 +7,7 @@ import com.vehicle.repository.SellerRepository;
 import com.vehicle.repository.VehicleRepository;
 import com.vehicle.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,14 +27,21 @@ public class SaleController {
     @Autowired
     SaleService saleService;
 
-    @GetMapping("/sale")
+    @GetMapping(path= "/sale", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getAllSales(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
+        boolean isFirst = true;
         for(Sale sale : saleRepository.getAllSales()){
             try {
+                if(isFirst){
+                    String ret = sale.toJson();
+                    stringBuilder.append(ret);
+                    isFirst = false;
+                    continue;
+                }
                 String ret = sale.toJson();
-                stringBuilder.append(ret+",\n");
+                stringBuilder.append(",\n"+ret);
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
@@ -65,8 +73,7 @@ public class SaleController {
             return "Seller does not exist";
         }
         Seller seller = sellerOptional.get();
-        SaleKey saleKey = new SaleKey(vehicle.getId(), seller.getCredential());
-        Sale sale = new Sale(saleKey, vehicle, seller, Double.parseDouble(price));
+        Sale sale = new Sale(vehicle, seller, Double.parseDouble(price));
         saleService.addOrUpdateSale(sale);
         return "ok";
     }

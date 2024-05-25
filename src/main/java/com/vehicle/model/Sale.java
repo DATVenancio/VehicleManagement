@@ -23,10 +23,9 @@ public class Sale {
     Seller seller;
 
     private double price;
-    private Date date = new Date();
 
-    public Sale(SaleKey saleKey, Vehicle vehicle, Seller seller, double price) {
-        this.saleKey = saleKey;
+    public Sale(Vehicle vehicle, Seller seller, double price) {
+        this.saleKey = new SaleKey(vehicle.getId(), seller.getCredential(), new Date());
         this.vehicle = vehicle;
         this.seller = seller;
         this.price = price;
@@ -38,12 +37,12 @@ public class Sale {
 
     public String toJson() throws JsonProcessingException {
         return "{\"vehicle_id\":" + vehicle.getId() +
-                ", \"credential\": " + seller.getCredential() +
-                ", \"price\": " + price +
-                ", \"date\": " + date.toString() +
-                ", \"sellername\": " + seller.getName() +
-                ", \"vehicleinfo\": " + vehicle.getBrand() + " " + vehicle.getModel() + " " + vehicle.getYear() + " " + vehicle.getColor() +
-                "}";
+                ", \"credential\": \"" + seller.getCredential() +
+                "\", \"price\": " + price +
+                ", \"date\": \"" + saleKey.date.toString() +
+                "\", \"sellername\": \"" + seller.getName() +
+                "\", \"vehicleinfo\": \"" + vehicle.getBrand() + " " + vehicle.getModel() + " " + vehicle.getYear() + " " + vehicle.getColor() +
+                "\"}";
     }
 
     public SaleKey getSaleKey() {
@@ -76,13 +75,5 @@ public class Sale {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 }

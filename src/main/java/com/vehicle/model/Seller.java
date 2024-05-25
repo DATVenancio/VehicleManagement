@@ -60,8 +60,8 @@ public class Seller {
     }
 
     public String toJson() throws JsonProcessingException {
-        return "{\"credential\":" + credential + ", \"name\": " + name +
-                ", \"birthday\": " + birthday.toString() + "}";
+        return "{\"credential\": \"" + credential + "\", \"name\": \"" + name +
+                "\", \"birthday\": \"" + birthday.toString() + "\"}";
     }
 
 }
